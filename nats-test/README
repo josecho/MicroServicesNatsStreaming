@@ -1,0 +1,6 @@
+Para poder facer as probas de testing accedendo ao POD do nat-streaming existente no Kubernete
+realizarmos port forward
+
+Kubectl get pods
+
+kubectl port-forward nats-depl-7444df6fd7-gcljk 4222:4222

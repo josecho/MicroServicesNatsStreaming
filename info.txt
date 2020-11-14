@@ -1,0 +1,125 @@
+minikube start
+kubectl version
+
+alias k="kubectl"
+
+create Dockerfile 
+docker build -t josecho/auth
+
+create infra/k8s
+create auth-depl.yaml
+
+create skaffold.yaml
+cd ticketing
+skaffold dev
+
+Chrome
+https://ticketing.dev/api/users/currentuser
+click por fora:  escribir no teclado thisisunsafe   (en dev para autocertificados https)
+
+
+docker system prune
+docker ps --all
+
+
+docker: start fails on storage provisioner addon "x509: certificate is valid for 172.17.0.3"
+es, running minikube delete "fixes" it and I am able to start a new minikube cluster properly again
+minikube delete
+
+
+
+gcloud auth login
+gcloud container clusters get-credentials ticketing-dev
+
+kubectl config view
+
+
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.40.2/deploy/static/provider/cloud/deploy.yaml
+kubectl delete -A ValidatingWebhookConfiguration ingress-nginx-admission
+
+
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@INICIAR
+
+minikube start
+
+gcloud container clusters list
+gcloud auth login
+-Asegúrate de que kubectl tenga credenciales de autenticación:
+gcloud container clusters get-credentials ticketing-dev
+
+https://ticketing.dev/api/users/currentuser
+thisisunsafe
+
+skaffold dev
+
+SERVER SIDE RENDER
+kubectl get namespace
+kubectl get services -n ingress-nginx
+
+http://SERVICENAME.NAMESPACE.svc.cluster.local/api/users/currentuser
+
+*******************Previous project******************
+
+
+k get pods
+k describe pod [pod_name] 
+k delete pod [pod_name] (baixo deployment reinicia)
+
+
+
+POSTS module
+
+k apply -f posts-depl.yaml
+k get deployments
+k describe deployment [depl_name]
+k delete deployment [depl_name]  (elimina definitiva)
+
+########################################ACTUALIZAR CODIGO/VERSION. Usar 'latest' tag
+cambiar construccion e actualizar hub
+docker build -t josecho/posts .
+docker push josecho/posts
+k rollout restart deployment posts-depl
+k get deployments
+k get pods
+k logs [pod_name] 
+
+
+######################################NodePort Service
+post-srv.yaml
+
+alias k="kubectl"
+
+k apply -f post-srv.yaml
+k get services
+k describe service posts-srv
+
+minikube ip
+http://172.17.0.2:30894/posts
+
+
+######################################ClusterIP Service   Posts<---->EventBus
+
+EventBus module
+
+docker build -t josecho/event-bus .
+docker push josecho/event-bus
+
+create event-bus-depl.yaml (same that posts but update name)
+
+cd infra/k8
+k apply -f event-bus-depl.yaml
+k get pods
+
+- adding clusterIp service
+- Create event-bus-srv into file event-bus-depl.yaml
+k apply -f event-bus-depl.yaml
+k get services
+The same process to posts as well
+k apply -f post-depl.yaml
+k get services
+
+
+
+
