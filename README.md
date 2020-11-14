@@ -14,3 +14,5 @@ hint:
 hint: git rm --cached common
 hint:
 hint: See "git help submodule" for more information.
+
+Build, deploy, and scale an E-Commerce app using Microservices built with Node, React, Docker and Kubernetes
