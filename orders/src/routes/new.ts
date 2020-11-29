@@ -4,11 +4,12 @@ import {
   requireAuth,
   validateRequest,
   NotFoundError,
+  OrderStatus,
   BadRequestError,
 } from '@josechotickets/common';
 import { body } from 'express-validator';
 import { Ticket } from '../models/ticket';
-import { Order, OrderStatus } from '../models/order';
+import { Order } from '../models/order';
 import { OrderCreatedPublisher } from '../events/publishers/order-created-publisher';
 import { natsWrapper } from '../nats-wrapper';
 
@@ -45,6 +46,7 @@ router.post(
     // Calculate an expiration date for this order
     const expiration = new Date();
     expiration.setSeconds(expiration.getSeconds() + EXPIRATION_WINDOW_SECONDS);
+
     // Build the order and save it to the database
     const order = Order.build({
       userId: req.currentUser!.id,
@@ -57,6 +59,7 @@ router.post(
     // Publish an event saying that an order was created
     new OrderCreatedPublisher(natsWrapper.client).publish({
       id: order.id,
+      version: order.version,
       status: order.status,
       userId: order.userId,
       expiresAt: order.expiresAt.toISOString(),
