@@ -13,6 +13,8 @@ create skaffold.yaml
 cd ticketing
 skaffold dev
 
+skaffold dev --trigger polling
+
 Chrome
 https://ticketing.dev/api/users/currentuser
 click por fora:  escribir no teclado thisisunsafe   (en dev para autocertificados https)
