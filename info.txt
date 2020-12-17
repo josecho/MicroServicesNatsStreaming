@@ -123,5 +123,14 @@ k apply -f post-depl.yaml
 k get services
 
 
+##################################
+
+kubectl create secret generic public-stripe-secret --from-literal PUBLIC_STRIPE_KEY=*******************
+
+stripeKey={process.env.PUBLIC_STRIPE_KEY!}
+
+process.env.JWT_KEY!
+
+
 
 
