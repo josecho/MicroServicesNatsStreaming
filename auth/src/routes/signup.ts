@@ -1,11 +1,13 @@
 import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
 import jwt from 'jsonwebtoken';
-import { validateRequest, BadRequestError } from '@josechotickets/common';
+
+import { validateRequest, BadRequestError } from '@jlvbcooptickets/common';
 import { User } from '../models/user';
 
 const router = express.Router();
 
+/* ticketing.dev/api/users/signup */
 router.post(
   '/api/users/signup',
   [
