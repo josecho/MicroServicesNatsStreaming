@@ -4,7 +4,7 @@ import Router from 'next/router';
 import useRequest from '../../hooks/use-request';
 
 const OrderShow = ({ order, currentUser }) => {
-  const [timeLeft, setTimeLeft] = useState(0);
+  const [timeLeft, setTimeLeft] = useState('');
   const { doRequest, errors } = useRequest({
     url: '/api/payments',
     method: 'post',
@@ -22,7 +22,6 @@ const OrderShow = ({ order, currentUser }) => {
 
     findTimeLeft();
     const timerId = setInterval(findTimeLeft, 1000);
-
     return () => {
       clearInterval(timerId);
     };
@@ -34,9 +33,9 @@ const OrderShow = ({ order, currentUser }) => {
 
   return (
     <div>
-      Time left to pay: {timeLeft} Seconds
+      Time left to pay: {timeLeft} seconds
       <StripeCheckout
-        token={({ id }) => doRequest({ token: id })}
+        token={({id}) => doRequest({token:id})}
         stripeKey="pk_test_wAMQXpncPDTDel3N9WiQdj8800o0mpHiym"
         amount={order.ticket.price * 100}
         email={currentUser.email}
@@ -52,5 +51,6 @@ OrderShow.getInitialProps = async (context, client) => {
 
   return { order: data };
 };
+
 
 export default OrderShow;
