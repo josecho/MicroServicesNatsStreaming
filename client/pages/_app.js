@@ -19,17 +19,13 @@ AppComponent.getInitialProps = async (appContext) => {
 
   let pageProps = {};
   if (appContext.Component.getInitialProps) {
-    pageProps = await appContext.Component.getInitialProps(
-      appContext.ctx,
-      client,
-      data.currentUser
-    );
+    pageProps = await appContext.Component.getInitialProps(appContext.ctx, client, data.currentUser);
   }
 
   return {
     pageProps,
-    ...data,
-  };
+    ...data
+  }
 };
 
-export default AppComponent;
+export default AppComponent; 
