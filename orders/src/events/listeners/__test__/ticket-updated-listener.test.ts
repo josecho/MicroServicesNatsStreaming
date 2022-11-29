@@ -1,17 +1,17 @@
 import mongoose from 'mongoose';
 import { Message } from 'node-nats-streaming';
-import { TicketUpdatedEvent } from '@josechotickets/common';
+import { TicketUpdatedEvent } from '@jlvbcooptickets/common';
 import { TicketUpdatedListener } from '../ticket-updated-listener';
 import { natsWrapper } from '../../../nats-wrapper';
 import { Ticket } from '../../../models/ticket';
 
-const setup = async () => {
+; const setup = async () => {
   // Create a listener
   const listener = new TicketUpdatedListener(natsWrapper.client);
 
   // Create and save a ticket
   const ticket = Ticket.build({
-    id: mongoose.Types.ObjectId().toHexString(),
+    id: new mongoose.Types.ObjectId().toHexString(),
     title: 'concert',
     price: 20,
   });
@@ -63,7 +63,7 @@ it('does not call ack if the event has a skipped version number', async () => {
 
   try {
     await listener.onMessage(data, msg);
-  } catch (err) {}
+  } catch (err) { }
 
   expect(msg.ack).not.toHaveBeenCalled();
 });
