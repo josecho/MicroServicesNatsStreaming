@@ -6,8 +6,9 @@ import {
   errorHandler,
   NotFoundError,
   currentUser,
-} from '@josechotickets/common';
+} from '@jlvbcooptickets/common';
 import { createChargeRouter } from './routes/new';
+
 
 const app = express();
 app.set('trust proxy', true);
@@ -18,6 +19,7 @@ app.use(
     secure: process.env.NODE_ENV !== 'test',
   })
 );
+
 app.use(currentUser);
 
 app.use(createChargeRouter);

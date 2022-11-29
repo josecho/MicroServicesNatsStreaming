@@ -3,11 +3,11 @@ import { body } from 'express-validator';
 import {
   requireAuth,
   validateRequest,
-  BadRequestError,
   NotAuthorizedError,
+  BadRequestError,
   NotFoundError,
-  OrderStatus,
-} from '@josechotickets/common';
+  OrderStatus
+} from '@jlvbcooptickets/common';
 import { stripe } from '../stripe';
 import { Order } from '../models/order';
 import { Payment } from '../models/payment';
@@ -29,6 +29,7 @@ router.post(
     if (!order) {
       throw new NotFoundError();
     }
+
     if (order.userId !== req.currentUser!.id) {
       throw new NotAuthorizedError();
     }
@@ -41,19 +42,19 @@ router.post(
       amount: order.price * 100,
       source: token,
     });
+
     const payment = Payment.build({
       orderId,
       stripeId: charge.id,
     });
     await payment.save();
-
     new PaymentCreatedPublisher(natsWrapper.client).publish({
-      id: payment.id!,
+      id: payment.id,
       orderId: payment.orderId,
       stripeId: payment.stripeId,
     });
 
-    res.status(201).send({ id: payment.id });
+    res.status(201).send({ success: true });
   }
 );
 
