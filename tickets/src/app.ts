@@ -6,7 +6,7 @@ import {
   errorHandler,
   NotFoundError,
   currentUser,
-} from '@josechotickets/common';
+} from '@jlvbcooptickets/common';
 import { createTicketRouter } from './routes/new';
 import { showTicketRouter } from './routes/show';
 import { indexTicketRouter } from './routes/index';
@@ -21,6 +21,7 @@ app.use(
     secure: process.env.NODE_ENV !== 'test',
   })
 );
+
 app.use(currentUser);
 
 app.use(createTicketRouter);

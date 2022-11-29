@@ -1,8 +1,4 @@
-import {
-  Listener,
-  OrderCancelledEvent,
-  Subjects,
-} from '@josechotickets/common';
+import { Listener, OrderCancelledEvent, Subjects } from '@jlvbcooptickets/common';
 import { Message } from 'node-nats-streaming';
 import { queueGroupName } from './queue-group-name';
 import { Ticket } from '../../models/ticket';
@@ -22,7 +18,7 @@ export class OrderCancelledListener extends Listener<OrderCancelledEvent> {
     ticket.set({ orderId: undefined });
     await ticket.save();
     await new TicketUpdatedPublisher(this.client).publish({
-      id: ticket.id!,
+      id: ticket.id,
       orderId: ticket.orderId,
       userId: ticket.userId,
       price: ticket.price,
