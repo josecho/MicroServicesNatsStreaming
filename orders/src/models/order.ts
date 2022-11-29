@@ -1,9 +1,10 @@
 import mongoose from 'mongoose';
 import { updateIfCurrentPlugin } from 'mongoose-update-if-current';
-import { OrderStatus } from '@josechotickets/common';
+import {OrderStatus} from '@jlvbcooptickets/common';
 import { TicketDoc } from './ticket';
 
-export { OrderStatus };
+export {OrderStatus};
+
 
 interface OrderAttrs {
   userId: string;
@@ -34,7 +35,7 @@ const orderSchema = new mongoose.Schema(
       type: String,
       required: true,
       enum: Object.values(OrderStatus),
-      default: OrderStatus.Created,
+      default: OrderStatus.Created
     },
     expiresAt: {
       type: mongoose.Schema.Types.Date,
@@ -53,6 +54,7 @@ const orderSchema = new mongoose.Schema(
     },
   }
 );
+
 
 orderSchema.set('versionKey', 'version');
 orderSchema.plugin(updateIfCurrentPlugin);

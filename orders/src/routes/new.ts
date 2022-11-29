@@ -6,15 +6,17 @@ import {
   NotFoundError,
   OrderStatus,
   BadRequestError,
-} from '@josechotickets/common';
+}  from '@jlvbcooptickets/common';
 import { body } from 'express-validator';
 import { Ticket } from '../models/ticket';
 import { Order } from '../models/order';
 import { OrderCreatedPublisher } from '../events/publishers/order-created-publisher';
 import { natsWrapper } from '../nats-wrapper';
 
+
 const router = express.Router();
 
+//const EXPIRATION_WINDOW_SECONDS = 15 * 60;
 const EXPIRATION_WINDOW_SECONDS = 1 * 60;
 
 router.post(
@@ -38,6 +40,9 @@ router.post(
     }
 
     // Make sure that this ticket is not already reserved
+    // Run query to look at all orders.  Find an order where the ticket
+    // is the ticket we just found *and* the orders status is *not* cancelled.
+    // If we find an order from that means the ticket *is* reserved
     const isReserved = await ticket.isReserved();
     if (isReserved) {
       throw new BadRequestError('Ticket is already reserved');
@@ -52,19 +57,19 @@ router.post(
       userId: req.currentUser!.id,
       status: OrderStatus.Created,
       expiresAt: expiration,
-      ticket,
+      ticket
     });
     await order.save();
 
     // Publish an event saying that an order was created
     new OrderCreatedPublisher(natsWrapper.client).publish({
-      id: order.id!,
+      id: order.id,
       version: order.version,
       status: order.status,
       userId: order.userId,
       expiresAt: order.expiresAt.toISOString(),
       ticket: {
-        id: ticket.id!,
+        id: ticket.id,
         price: ticket.price,
       },
     });
