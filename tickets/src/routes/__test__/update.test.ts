@@ -127,6 +127,7 @@ it('publishes an event', async () => {
   expect(natsWrapper.client.publish).toHaveBeenCalled();
 });
 
+
 it('rejects updates if the ticket is reserved', async () => {
   const cookie = global.signin();
 
@@ -139,7 +140,7 @@ it('rejects updates if the ticket is reserved', async () => {
     });
 
   const ticket = await Ticket.findById(response.body.id);
-  ticket!.set({ orderId: mongoose.Types.ObjectId().toHexString() });
+  ticket!.set({ orderId: new mongoose.Types.ObjectId().toHexString() });
   await ticket!.save();
 
   await request(app)

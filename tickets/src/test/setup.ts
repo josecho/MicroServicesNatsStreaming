@@ -5,27 +5,20 @@ import { app } from '../app';
 import jwt from 'jsonwebtoken';
 
 declare global {
-  namespace NodeJS {
-    interface Global {
-      signin(): string[];
-    }
-  }
+  var signin: (id?: string) => string[];
 }
+
 
 jest.mock('../nats-wrapper');
 
 let mongo: any;
 beforeAll(async () => {
-  process.env.JWT_KEY = 'asdfasdf';
-  process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+  process.env.JWT_KEY = 'asdfasfsadf';
 
-  mongo = new MongoMemoryServer();
-  const mongoUri = await mongo.getUri();
+  const mongo = await MongoMemoryServer.create();
+  const mongoUri = mongo.getUri();
 
-  await mongoose.connect(mongoUri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
+  await mongoose.connect(mongoUri, {});
 });
 
 beforeEach(async () => {
@@ -38,21 +31,22 @@ beforeEach(async () => {
 });
 
 afterAll(async () => {
-  await mongo.stop();
+  if (mongo) {
+    await mongo.stop();
+  }
   await mongoose.connection.close();
 });
 
 global.signin = () => {
-  // Build a JWT payload.  { id, email }
+  // Build a JWT payload. {id, email}
   const payload = {
     id: new mongoose.Types.ObjectId().toHexString(),
     email: 'test@test.com',
   };
-
   // Create the JWT!
   const token = jwt.sign(payload, process.env.JWT_KEY!);
 
-  // Build session Object. { jwt: MY_JWT }
+  // Build session Ojbect {jwt: MY_JWT}
   const session = { jwt: token };
 
   // Turn that session into JSON
@@ -61,6 +55,6 @@ global.signin = () => {
   // Take JSON and encode it as base64
   const base64 = Buffer.from(sessionJSON).toString('base64');
 
-  // return a string thats the cookie with the encoded data
-  return [`express:sess=${base64}`];
+  // return a string thats the cookie with the cookie data
+  return [`session=${base64}`];
 };

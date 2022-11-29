@@ -9,7 +9,7 @@ const start = async () => {
     throw new Error('JWT_KEY must be defined');
   }
   if (!process.env.MONGO_URI) {
-    throw new Error('MONGO_URI must be defined');
+    throw new Error('MONGO_URI must be define');
   }
   if (!process.env.NATS_CLIENT_ID) {
     throw new Error('NATS_CLIENT_ID must be defined');
@@ -37,18 +37,13 @@ const start = async () => {
     new OrderCreatedListener(natsWrapper.client).listen();
     new OrderCancelledListener(natsWrapper.client).listen();
 
-    await mongoose.connect(process.env.MONGO_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useCreateIndex: true,
-    });
+    await mongoose.connect(process.env.MONGO_URI);
     console.log('Connected to MongoDb');
   } catch (err) {
     console.error(err);
   }
-
   app.listen(3000, () => {
-    console.log('Listening on port 3000!!!!!!!!');
+    console.log('Listening on port 3000!!!!!!');
   });
 };
 
