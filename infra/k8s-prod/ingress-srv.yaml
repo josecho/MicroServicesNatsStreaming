@@ -52,7 +52,7 @@ kind: Service
 metadata:
   annotations:
     service.beta.kubernetes.io/do-loadbalancer-protocol: "https"
-    service.beta.kubernetes.io/do-loadbalancer-certificate-id: "a433812ba8e1ed96df7e5a3b55c9d9edf018bc16"
+    service.beta.kubernetes.io/do-loadbalancer-certificate-id: "797e9a93-5c41-46ed-af74-2ec0cbebb9d7"
     service.beta.kubernetes.io/do-loadbalancer-redirect-http-to-https: "true"
     service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: "true"
     service.beta.kubernetes.io/do-loadbalancer-hostname: "www.jlvbcoop-formacion.xyz"
