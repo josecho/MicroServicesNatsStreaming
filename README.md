@@ -1,5 +1,13 @@
 # MicroServicesNatsStreamings
 
+# DIGITALOCEAN DEPLOY
+
+- Development environment in the development branch.
+
+- Production environment on the main branch.
+
+===========
+
 warning: adding embedded git repository: common
 
 You've added another git repository inside your current repository.

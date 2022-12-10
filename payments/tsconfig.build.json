@@ -6,5 +6,7 @@
       "src/**/*.spec.ts",
       "src/**/*.test.ts",
       "src/test/setup.ts",
+      "src/__mocks__/*.ts",
+      "src/events/listeners/__test__/*.ts"
     ]
   }

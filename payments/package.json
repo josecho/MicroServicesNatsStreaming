@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node-dev src/index.ts",
+    "dev": "ts-node-dev src/index.ts",
+    "start": "tsc --project tsconfig.build.json && node build/index.js",
     "test": "jest --watchAll --no-cache",
-    "test:ci": "jest --runInBand --detectOpenHandles --forceExit",
-    "build": "node src/index.ts"
+    "test:ci": "jest --runInBand --detectOpenHandles --forceExit"
   },
   "jest": {
     "preset": "ts-jest",
