@@ -5,4 +5,4 @@ COPY package.json .
 RUN npm install
 COPY . .
 
-RUN npm run next build
+RUN npm run build
