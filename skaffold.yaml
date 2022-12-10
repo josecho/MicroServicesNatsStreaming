@@ -12,7 +12,7 @@ build:
     - image: josecho/auth
       context: auth
       docker:
-        dockerfile: Dockerfile
+        dockerfile: Dockerfile.dev
       sync:
         manual:
           - src: 'src/**/*.ts'
@@ -20,7 +20,7 @@ build:
     - image: josecho/client
       context: client
       docker:
-        dockerfile: Dockerfile
+        dockerfile: Dockerfile.dev
       sync:
         manual:
           - src: '**/*.js'
@@ -28,7 +28,7 @@ build:
     - image: josecho/tickets
       context: tickets
       docker:
-        dockerfile: Dockerfile
+        dockerfile: Dockerfile.dev
       sync:
         manual:
           - src: 'src/**/*.ts'
@@ -36,7 +36,7 @@ build:
     - image: josecho/orders
       context: orders
       docker:
-        dockerfile: Dockerfile
+        dockerfile: Dockerfile.dev
       sync:
         manual:
           - src: 'src/**/*.ts'
@@ -44,7 +44,7 @@ build:
     - image: josecho/expiration
       context: expiration
       docker:
-        dockerfile: Dockerfile
+        dockerfile: Dockerfile.dev
       sync:
         manual:
           - src: 'src/**/*.ts'
@@ -52,7 +52,7 @@ build:
     - image: josecho/payments
       context: payments
       docker:
-        dockerfile: Dockerfile
+        dockerfile: Dockerfile.dev
       sync:
         manual:
           - src: 'src/**/*.ts'
