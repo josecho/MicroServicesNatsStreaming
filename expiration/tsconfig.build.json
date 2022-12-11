@@ -6,5 +6,6 @@
       "src/**/*.spec.ts",
       "src/**/*.test.ts",
       "src/test/setup.ts",
+      "src/__mocks__/*.ts",
     ]
   }
