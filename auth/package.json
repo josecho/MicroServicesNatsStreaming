@@ -7,7 +7,6 @@
     "start": "ts-node-dev src/index.ts",
     "test": "jest --watchAll --no-cache",
     "test:ci": "jest --runInBand --detectOpenHandles --forceExit",
-    "build": "ts-node --transpileOnly src/index.ts"
   },
   "jest": {
     "preset": "ts-jest",
