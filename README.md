@@ -1,5 +1,8 @@
 # MicroServicesNatsStreamings
 
+# DIGITALOCEAN DEPLOY
+
+
 warning: adding embedded git repository: common
 
 You've added another git repository inside your current repository.
