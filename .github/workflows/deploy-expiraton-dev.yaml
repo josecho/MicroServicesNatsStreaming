@@ -16,8 +16,8 @@ jobs:
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-      - run: cd expiration && docker build -t josecho/expiration -f Dockerfile.dev .
-      - run: docker push josecho/expiration
+      - run: cd expiration && docker build -t josecho/expirationdev -f Dockerfile.dev .
+      - run: docker push josecho/expirationdev
       - uses: digitalocean/action-doctl@v2
         with:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}

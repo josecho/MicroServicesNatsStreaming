@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: client
-          image: josecho/client
+          image: josecho/clientdev
 
 ---
 apiVersion: v1
