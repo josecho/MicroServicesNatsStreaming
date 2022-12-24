@@ -2,7 +2,7 @@ import axios from "axios";
 
 const buildClient = ({ req }) => {
   if (typeof window === "undefined") {
-    // We are on the server
+    // We are on the server. Pending to switch beteen DEV and PRO and change URL
     return axios.create({
       baseURL:
         "https://www.jlvbcoop-formacion-dev.xyz",
