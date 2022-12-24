@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: tickets
-          image: josecho/tickets
+          image: josecho/ticketsdev
           env:
             - name: NATS_CLIENT_ID
               valueFrom:

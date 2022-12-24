@@ -16,8 +16,8 @@ jobs:
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-      - run: cd payments && docker build -t josecho/payments -f Dockerfile.dev .
-      - run: docker push josecho/payments
+      - run: cd payments && docker build -t josecho/paymentsdev -f Dockerfile.dev .
+      - run: docker push josecho/paymentsdev
       - uses: digitalocean/action-doctl@v2
         with:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
