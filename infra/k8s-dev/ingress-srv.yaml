@@ -51,7 +51,6 @@ kind: Service
 metadata:
   annotations:
     service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: "true"
-    service.beta.kubernetes.io/do-loadbalancer-name: "www.jlvbcoop-formacion-dev.xyz"
     service.beta.kubernetes.io/do-loadbalancer-hostname: "www.jlvbcoop-formacion-dev.xyz"
   labels:
     helm.sh/chart: ingress-nginx-2.0.3
