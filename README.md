@@ -6,6 +6,14 @@
 
 - Production environment on the main branch.
 
+
+https://nextjs.org/docs/deployment
+
+https://nextjs.org/learn/foundations/how-nextjs-works/development-and-production
+
+https://nextjs.org/docs/messages/non-standard-node-env
+
+
 ===========
 
 warning: adding embedded git repository: common
