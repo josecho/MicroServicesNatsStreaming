@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const buildClient = ({ req }) => {
-  console.log(process.env);
+  console.log(process.env.BASE_URL);
   let BASE_URL = 'https://www.jlvbcoop-formacion-dev.xyz'
   if (process.env.NODE_ENV === 'production') {
     BASE_URL = 'https://www.jlvbcoop-formacion.xyz'
