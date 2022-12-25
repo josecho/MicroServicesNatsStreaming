@@ -2,14 +2,15 @@ import axios from "axios";
 
 const buildClient = ({ req }) => {
   console.log(process.env);
-  if (!process.env.BASE_URL) {
-    throw new Error('BASE_URL must be defined');
+  let BASE_URL = 'https://www.jlvbcoop-formacion-dev.xyz'
+  if (process.env.NODE_ENV === 'production') {
+    BASE_URL = 'https://www.jlvbcoop-formacion.xyz'
   }
   if (typeof window === "undefined") {
     // We are on the server. 
     return axios.create({
       baseURL:
-        process.env.BASE_URL,
+        BASE_URL,
       headers: req.headers,
     });
   } else {
