@@ -1,16 +1,12 @@
 import axios from "axios";
 
 const buildClient = ({ req }) => {
-  console.log(process.env.BASE_URL);
-  let BASE_URL = 'https://www.jlvbcoop-formacion-dev.xyz'
-  if (process.env.NODE_ENV === 'production') {
-    BASE_URL = 'https://www.jlvbcoop-formacion.xyz'
-  }
+  console.log(process.env);
   if (typeof window === "undefined") {
-    // We are on the server. 
+    // We are on the server. Pending to switch beteen DEV and PRO and change URL
     return axios.create({
       baseURL:
-        BASE_URL,
+        "https://www.jlvbcoop-formacion.xyz",
       headers: req.headers,
     });
   } else {
