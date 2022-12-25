@@ -8,7 +8,7 @@ const buildClient = ({ req }) => {
     // We are on the server. Pending to switch beteen DEV and PRO and change URL
     return axios.create({
       baseURL:
-        "https://www.jlvbcoop-formacion-dev.xyz",
+        "http://www.jlvbcoop-formacion-dev.xyz",
       headers: req.headers,
     });
   } else {
