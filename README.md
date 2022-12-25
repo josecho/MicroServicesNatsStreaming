@@ -1,5 +1,10 @@
 # MicroServicesNatsStreamings
 
+- Joining a project using submodules
+
+git clone --recursive [project url]
+
+
 # DIGITALOCEAN DEPLOY
 
 - Development environment in the development branch.

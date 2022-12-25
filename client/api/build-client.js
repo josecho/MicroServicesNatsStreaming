@@ -2,6 +2,8 @@ import axios from "axios";
 
 const buildClient = ({ req }) => {
   console.log(process.env);
+  console.log( process.env.MONGO_URI);
+  console.log(process.env.NODE_ENV);
   if (typeof window === "undefined") {
     // We are on the server. Pending to switch beteen DEV and PRO and change URL
     return axios.create({
