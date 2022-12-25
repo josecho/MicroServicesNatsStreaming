@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const buildClient = ({ req }) => {
+  console.log(process.env);
   if (!process.env.BASE_URL) {
     throw new Error('BASE_URL must be defined');
   }
