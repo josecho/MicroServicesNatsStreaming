@@ -2,6 +2,11 @@
 
 # DIGITALOCEAN DEPLOY
 
+- Development environment in the development branch.
+
+- Production environment on the main branch.
+
+===========
 
 warning: adding embedded git repository: common
 
