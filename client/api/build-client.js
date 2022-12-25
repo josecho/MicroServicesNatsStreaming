@@ -1,11 +1,14 @@
 import axios from "axios";
 
 const buildClient = ({ req }) => {
+  if (!process.env.BASE_URL) {
+    throw new Error('BASE_URL must be defined');
+  }
   if (typeof window === "undefined") {
-    // We are on the server. Pending to switch beteen DEV and PRO and change URL
+    // We are on the server. 
     return axios.create({
       baseURL:
-        "https://www.jlvbcoop-formacion.xyz",
+        process.env.BASE_URL,
       headers: req.headers,
     });
   } else {

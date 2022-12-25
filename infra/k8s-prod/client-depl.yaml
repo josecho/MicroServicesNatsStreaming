@@ -15,6 +15,9 @@ spec:
       containers:
         - name: client
           image: josecho/client
+          env:
+            - name: BASE_URL
+              value: 'https://www.jlvbcoop-formacion.xyz'
 
 ---
 apiVersion: v1
